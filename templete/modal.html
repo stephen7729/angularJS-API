@@ -1,0 +1,69 @@
+<div class="i-title">
+    <h1>ng-model 指令</h1>
+    <p>ng-model 指令可以将输入域的值与 AngularJS 创建的变量绑定。</p>
+</div>
+<div class="i-content">
+    <h3>双向绑定</h3>
+    <p>双向绑定，在修改输入域的值时， AngularJS 属性的值也将修改：</p>
+    <xmp class="html">
+        <div ng-app="myApp" ng-controller="myCtrl">
+            名字: <input ng-model="name">
+            <h1>你输入了: {{name}}</h1>
+        </div>
+    </xmp>
+</div>
+<div class="i-content">
+    <h3>验证用户输入</h3>
+    <xmp class="html">
+        <form ng-app="" name="myForm">
+            Email:
+            <input type="email" name="myAddress" ng-model="text">
+            <span ng-show="myForm.myAddress.$error.email">不是一个合法的邮箱地址</span>
+        </form>
+    </xmp>
+    <p>提示信息会在 ng-show 属性返回 true 的情况下显示。</p>
+</div>
+<div class="i-content">
+    <h3>应用状态</h3>
+    <p>ng-model 指令可以为应用数据提供状态值(invalid, dirty, touched, error):</p>
+    <xmp class="html">
+        <form ng-app="" name="myForm" ng-init="myText = 'test@runoob.com'">
+            Email:
+            <input type="email" name="myAddress" ng-model="myText" required></p>
+            <h1>状态</h1>
+            {{myForm.myAddress.$valid}}
+            {{myForm.myAddress.$dirty}}
+            {{myForm.myAddress.$touched}}
+        </form>
+    </xmp>
+</div>
+<div class="i-content">
+    <h3>CSS 类</h3>
+    <p>ng-model 指令基于它们的状态为 HTML 元素提供了 CSS 类：</p>
+    <xmp class="html">
+        <style>
+            input.ng-invalid {
+                background-color: lightblue;
+            }
+        </style>
+        <body>
+
+        <form ng-app="" name="myForm">
+            输入你的名字:
+            <input name="myAddress" ng-model="text" required>
+        </form>
+        </body>
+    </xmp>
+    <p>ng-model 指令根据表单域的状态添加/移除以下类：</p>
+    <ul>
+        <li>ng-empty</li>
+        <li>ng-not-empty</li>
+        <li>ng-touched</li>
+        <li>ng-untouched</li>
+        <li>ng-valid</li>
+        <li>ng-invalid</li>
+        <li>ng-dirty</li>
+        <li>ng-pending</li>
+        <li>ng-pristine</li>
+    </ul>
+</div>

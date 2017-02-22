@@ -1,0 +1,105 @@
+<div class="i-title">
+    <h1>AngularJS 指令</h1>
+    <p>AngularJS 通过被称为 指令 的新属性来扩展 HTML。</p>
+    <p>AngularJS 通过内置的指令来为应用添加功能。</p>
+    <p>AngularJS 允许你自定义指令。</p>
+</div>
+<div class="i-content">
+    <h3>AngularJS 指令</h3>
+    <p>AngularJS 指令是扩展的 HTML 属性，带有前缀 <b>ng-</b>。</p>
+    <p><b>ng-app</b> 指令初始化一个 AngularJS 应用程序。</p>
+    <p><b>ng-init</b> 指令初始化应用程序数据。</p>
+    <p><b>ng-model</b>  指令把元素值（比如输入域的值）绑定到应用程序。</p>
+    <xmp class="html">
+        <div ng-app="" ng-init="firstName='John'">
+            <p>在输入框中尝试输入：</p>
+            <p>姓名：<input type="text" ng-model="firstName"></p>
+            <p>你输入的为： {{ firstName }}</p>
+        </div>
+
+    </xmp>
+    <p>ng-app 指令告诉 AngularJS，<b>&lt;div&gt;</b> 元素是 AngularJS 应用程序 的"所有者"。</p>
+    <div class="alert alert-warning">
+        <i class="fa fa-lightbulb-o fa-2x"></i>Tip:
+        <p>一个网页可以包含多个运行在不同元素中的 AngularJS 应用程序。</p>
+    </div>
+</div>
+<div class="i-content">
+    <h3>数据绑定</h3>
+    <p>上面实例中的 <b ng-bind-template="">{{}}</b> 表达式是一个 AngularJS 数据绑定表达式。</p>
+    <p>AngularJS 中的数据绑定，同步了 AngularJS 表达式与 AngularJS 数据。</p>
+    <p><b>{{ firstName }}</b> 是通过 <b>ng-model="firstName"</b> 进行同步。</p>
+    <p><b>ng-bind</b> 指令把应用程序数据绑定到 HTML 视图。</p>
+    <xmp class="html">
+        <div ng-app="" ng-init="quantity=1;price=5">
+            <h2>价格计算器</h2>
+            数量： <input type="number"    ng-model="quantity">
+            价格： <input type="number" ng-model="price">
+            <p><b>总价：</b> {{ quantity * price }}</p>
+        </div>
+    </xmp>
+    <div class="alert alert-warning">
+        <i class="fa fa-lightbulb-o fa-2x"></i>Tip:
+        <p>使用 ng-init 不是很常见。您将在控制器一章中学习到一个更好的初始化数据的方式。</p>
+    </div>
+</div>
+<div class="i-content">
+    <h3>重复 HTML 元素</h3>
+    <p><b>ng-repeat</b> 指令会重复一个 HTML 元素：</p>
+    <xmp class="html">
+        <div ng-app="" ng-init="names=['Jani','Hege','Kai']">
+            <p>使用 ng-repeat 来循环数组</p>
+            <ul>
+                <li ng-repeat="x in names">
+                    {{ x }}
+                </li>
+            </ul>
+        </div>
+    </xmp>
+    <p><b>ng-repeat</b> 指令用在一个对象数组上：</p>
+    <xmp class="html">
+        <div ng-app="" ng-init="names=[
+            {name:'Jani',country:'Norway'},
+            {name:'Hege',country:'Sweden'},
+            {name:'Kai',country:'Denmark'}]">
+
+            <p>循环对象：</p>
+            <ul>
+                <li ng-repeat="x    in names">
+                    {{ x.name + ', ' + x.country }}
+                </li>
+            </ul>
+
+        </div>
+    </xmp>
+    <div class="alert alert-warning">
+        <i class="fa fa-lightbulb-o fa-2x"></i>Tip:
+        <p>AngularJS 完美支持数据库的 CRUD（增加Create、读取Read、更新Update、删除Delete）应用程序。
+            把实例中的对象想象成数据库中的记录。</p>
+    </div>
+</div>
+<div class="i-content">
+    <h3>ng-app 指令</h3>
+    <p><b>ng-app</b> 指令定义了 AngularJS 应用程序的 根元素。</p>
+    <b><b>ng-app</b> 指令在网页加载完毕时会自动引导（自动初始化）应用程序。</b>
+    <b>稍后您将学习到 ng-app 如何通过一个值（比如 ng-app="myModule"）连接到代码模块。</b>
+</div>
+<div class="i-content">
+    <h3>ng-init 指令(<b class="text-cherry">不推荐使用</b>)</h3>
+    <p>通常情况下，不使用 ng-init。您将使用一个控制器或模块来代替它。</p>
+</div>
+<div class="i-content">
+    <h3>ng-model 指令</h3>
+    <p><b>ng-model</b> 指令 绑定 HTML 元素 到应用程序数据。</p>
+    <p><b>ng-model</b> 指令也可以：</p>
+    <ul>
+        <li>为应用程序数据提供类型验证（number、email、required）。</li>
+        <li>为应用程序数据提供状态（invalid、dirty、touched、error）。</li>
+        <li>为 HTML 元素提供 CSS 类。</li>
+        <li>绑定 HTML 元素到 HTML 表单。</li>
+    </ul>
+</div>
+<div class="i-content">
+    <h3>ng-repeat 指令</h3>
+    <p><b>ng-repeat</b> 指令对于集合中（数组中）的每个项会 <b>克隆一次 HTML 元素。</b></p>
+</div>

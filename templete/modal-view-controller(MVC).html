@@ -1,0 +1,58 @@
+<div class="i-title">
+    <h1>模型 视图 控制器(MVC)</h1>
+    <p>在 20 世纪 70 年代引入了 MVC 应用结构作为 Smalltalk 的一部分。从 Smalltalk 开始， MVC 在涉及用户界面的桌面开发环境中变的很流行。无论你使用 C++，java，Object-c，都有有 MVC 的风格。然而，直到最近几年，MVC 才是 WEB 开发的全部。</p>
+    <p>MVC 背后的核心理念就是，你在你的代码之间明确分离管理数据（模型），应用程序逻辑（控制器），并将数据给用户（视图）。 </p>
+    <p>视图从模型中获取数据展示给用户。当用户通过点击或者输入和应用程序进行交互时，控制器通过改变模型中的数据响应。最终，模型层通知视图层，已经发生改变，一边更新显示。 </p>
+    <p>在 Angular 应用中，视图层就是 DOM，控制器就 JavaScript 类，模型数据存储在对象属性中。 </p>
+    <p>我们认为，MVC 是整齐的几个原因。首先，它更够给你一个内心的模型用来存放什么，因此你不需要重复造轮子。你们项目中的其他人，由于知道使用了 MVC 结构组织代码，因此很容易的理解你所写的。可能最重要的是，带来了巨大的利益，是有应用程序更容易扩展、维护、和测试。</p>
+</div>
+<div class="i-content">
+    <h3>数据绑定</h3>
+    <p>在 AJAX 之前，单页面应用是常见的，想 Rails，PHP，JSP 等平台通过合并 HTML 字符串和发送给用户展示的数据来创建用户界面。 </p>
+    <p>像 jQuery 库这种扩展到客户端的模式，让我们遵循相似的风格，但由于有更新的能力， 单独地 DOM 的部分，而不是更新整个页面。这里，我们合并 HTML 字符串和数据，然后通过元素上设置 innerhtml 将结果插入到我们所想要的 DOM 中。 </p>
+    <p>这一切都运行的相当好，但是当你想将新数据插入到界面，或者改变基于用户输入的数据时，你需要做很多又不是价值不高的工作，来确保同时在界面和 JavaScript 属性中获取的数据是正确的状态。 </p>
+    <p>但是，倘若我们有什么东西把这些工作都为我们做好了，同时不需要写代码？倘若我能仅仅声明界面的某一部分映射到 JavaScript 的属性，让他们自动的同步？这种编程方式叫做数据绑定。我们在 Angular 中包括这种功能，因为当编写视图和模型时，使用 MVC 来消除代码那是非常棒的。移动数据从一个地方到另外一个地方的绝大部分工作是自动发生的。</p>
+    <p>为了要看到这种效果，让我们做第一个例子，并让他动起来。之前，Hello Controllery一开始设置了 greeting.text 模型，之后就没有改变过。为了让它‘活起来’，让我们增加一个文本输入框改变示例，随着用户的输入改变 greeting.text 的值。 </p>
+    <xmp class="html">
+        <html ng-app>
+        <head>
+            <script src="angular.js"></script> <script src="controllers.js"></script> </head>
+        <body>
+        <div ng-controller='HelloController'>
+            <input ng-model='greeting.text'>
+            <p>{{greeting.text}}, World</p>
+        </div>
+        </body>
+        </html>
+    </xmp>
+    <p>永远不需要在输入字段上注册一个改变监听器，我们就有一个可以动态更新的界面。对于服务器来回的变化同样是可以的。在控制器里，我们可以向服务器发起一个请求，获取相应，设置到$scope.greeting.text 中。Angular 可以自动更新输入框和大括号中的值。</p>
+</div>
+<div class="i-content">
+    <h3>依赖注入（DI） </h3>
+    <p>之前我们提及到的，但是值得重复 HellController 中有许多我们没写。例如，$scope 对象把数据绑定自动的传递了给我们。我们没有必要通过调用任何函数来创建它。我们只是要求把它放到 HelloController 构造函数中。 </p>
+    <p>$scope 并不是我们唯一需要的。如果我们需要数据绑定到用户浏览器指定的 URL 地址中，我们需要在构造函数中，添加一个$loaction 对象，就像这样： </p>
+    <xmp class="html">
+        function HelloController($scope, $location) { $scope.greeting = { text: 'Hello' };
+        // use $location for something good here... }
+    </xmp>
+    <p>通过 Angular 的依赖注入系统，我们可以得到这种效果。依赖注入允许我们遵循一种开发风格，这种开发风格中，不是创建依赖，我们的类仅仅添加他们需要的。 </p>
+    <p>这个遵循了一个叫迪米特法则的设计模式，也被称作最少知识法则。由于 HelloController的任务是建立 greeting 模型的的初始值，这种模式就是说，它不需要担心像$scope 如何创建以及在哪里找到它。 </p>
+    <p>这种特性不仅仅是 Angular 框架为了创建对象而有的。你同样可以写完这些代码的剩余部分。 </p>
+</div>
+<div class="i-content">
+    <h3>指令 </h3>
+    <p>Angular 最优秀部分之一是你可以把你写的模板当成 HTML。因为在框架的核心层，我们已经包括了一个强大的 DOM 转换引擎，可以让你扩展 HTML 语法，因此你才可以这样做。 </p>
+    <p>我们已经在我模板文件中看到了多个新的属性，这些并不是 HTML 规范的一部分。示例中包括两个大括号是用用来数据绑定的，ng-controller 是用来指定哪个控制器来服务哪个视图，ng-model 将一个输入框绑定到模型部分。我们称这些叫 HTML 扩展指令。 </p>
+    <p>Angular 带有很多标识符，帮助你为你的应用程序定义视图。很快我们将看到更多。这些标识符可以定义我们常见的视图作为模板。它们可以说明应用程序如何工作的或者创建可重复使用的组件。 </p>
+    <p>同时不局限域 Angular 自带的标识符。你可以写你自己的来扩展 HTML 模板，做任何你想做的事。</p>
+    <xmp class="html">
+        <form ng-app="" name="myForm" ng-init="myText = 'test@runoob.com'">
+            Email:
+            <input type="email" name="myAddress" ng-model="myText" required></p>
+            <h1>状态</h1>
+            {{myForm.myAddress.$valid}}
+            {{myForm.myAddress.$dirty}}
+            {{myForm.myAddress.$touched}}
+        </form>
+    </xmp>
+</div>

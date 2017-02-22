@@ -1,0 +1,103 @@
+.text-cherry {
+    color: #ff3c54;
+}
+p {
+    font-size: 16px;
+    line-height: 175%;
+    word-spacing:8px;
+    letter-spacing: 1px;
+}
+h1 {
+    border-left: 4px solid #ff3c54;
+    padding-left: 10px;
+}
+h3 {
+    border-left: 2px solid #ff3c54;
+    padding-left: 10px;
+}
+xmp {
+    border-radius: 3px;
+    position: relative;
+    text-align: left;
+    background-color: #eeeeee;
+}
+xmp::after {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    color: #ff3c54;
+}
+xmp.javascript::after {
+    content: "javascript";
+}
+xmp.html::after {
+    content: "html";
+}
+.text-white,
+.text-white:hover,
+.text-white:active,
+.text-white:focus{
+    color: #ffffff;
+}
+.cherry .navbar {
+    background-color: #ff3c54;
+    border-radius: 0px;
+}
+.left-menu {
+    float: left;
+    width: 220px;
+    position: fixed;
+    top: 100px;
+    bottom:0;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+.content {
+    margin-top: 100px;
+    margin-left: 220px;
+    padding: 0 20px 20px 20px;
+}
+
+.footer {
+    background-color: #f4f4f4;
+    padding: 5px;
+    text-align: center;
+}
+
+/*左侧主菜单导航样式*/
+.menu {
+    width: 100%;
+    list-style: none;
+    background-clip: padding-box;
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    font-size: 14px;
+    text-align: center;
+    list-style: outside none none;
+    margin: 0 auto;
+    padding: 0;
+}
+.menu > li {
+    padding: 5px 20px;
+    text-align: left;
+}
+.second-menu {
+    list-style: none;
+    padding-left: 10px;
+}
+.second-menu > li{
+    padding: 5px;
+}
+.i-title {
+    border-bottom: 1px solid #dddddd;
+}
+
+.i-content:not(:last-child) {
+    border-bottom: 1px solid #dddddd;
+}
+
+.content-list > li{
+    padding: 0 0 0 1.5em;
+    margin: 0 0 1em 1em;
+}

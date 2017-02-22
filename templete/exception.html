@@ -1,0 +1,45 @@
+<div class="i-title">
+    <h1>AngularJS 表达式</h1>
+    <p>AngularJS 使用 <b>表达式</b> 把数据绑定到 HTML。</p>
+</div>
+<div class="i-content" ng-app="exception">
+    <h3>AngularJS 表达式</h3>
+    <p>AngularJS 表达式写在双大括号内：<b>{{ expression }}</b>。</p>
+    <p>AngularJS 表达式把数据绑定到 HTML，这与 <b>ng-bind</b> 指令有异曲同工之妙。</p>
+    <p>AngularJS 将在表达式书写的位置"输出"数据。</p>
+    <p><b>AngularJS</b> 表达式 很像 <b>JavaScript</b> 表达式：它们可以包含文字、运算符和变量。</p>
+    <p>实例 <b>{{ 5 + 5 }}</b> 或 <b>{{ firstName + " " + lastName }}</b></p>
+    <xmp class="html">
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <script src="http://cdn.bootcss.com/angular.js/1.6.0/angular.js"></script>
+        </head>
+        <body>
+
+        <div ng-app="">
+            <p ng-bind-html="msg">我的第一个表达式: {{ 5 + 5 }}</p>
+        </div>
+
+        </body>
+        </html>
+    </xmp>
+</div>
+<div class="i-content">
+    <h3>AngularJS 数字-字符串-对象-数组</h3>
+    <p>具体用法相同这里不一一赘述</p>
+</div>
+<div class="i-content">
+    <h3>AngularJS 表达式 与 JavaScript 表达式</h3>
+    <ul class="content-list">
+        <li>类似于 JavaScript 表达式，AngularJS 表达式可以包含字母，操作符，变量。</li>
+        <li>与 JavaScript 表达式不同，AngularJS 表达式可以写在 HTML 中。</li>
+        <li>与 JavaScript 表达式不同，AngularJS 表达式不支持条件判断，循环及异常。</li>
+        <li>与 JavaScript 表达式不同，AngularJS 表达式支持过滤器。</li>
+    </ul>
+</div>
+<script src="../js/angualr/angular-sanitize.js"></script>
+<script>
+    var exception = angular.module('exception', ['ngSanitize']);
+</script>
