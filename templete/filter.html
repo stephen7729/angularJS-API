@@ -1,0 +1,99 @@
+<div class="i-title">
+    <h1>AngularJS 过滤器</h1>
+    <p>过滤器可以使用一个管道字符（|）添加到表达式和指令中。</p>
+</div>
+<div class="i-content">
+    <h3>AngularJS 过滤器</h3>
+    <p>AngularJS 过滤器可用于转换数据：</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>过滤器</th>
+                <th>描述</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>currency</td>
+                <td>格式化数字为货币格式。</td>
+            </tr>
+            <tr>
+                <td>filter</td>
+                <td>从数组项中选择一个子集。</td>
+            </tr>
+            <tr>
+                <td>lowercase</td>
+                <td>格式化字符串为小写。</td>
+            </tr>
+            <tr>
+                <td>orderBy</td>
+                <td>根据某个表达式排列数组。</td>
+            </tr>
+            <tr>
+                <td>uppercase</td>
+                <td>格式化字符串为大写。</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="i-content">
+    <h3>表达式中添加过滤器</h3>
+    <p>过滤器可以通过一个管道字符（|）和一个过滤器添加到表达式中。</p>
+    <p>uppercase 过滤器将字符串格式化为大写：</p>
+    <xmp class="html ng-cloak">
+       <div ng-app="myApp" ng-controller="personCtrl">
+
+        <p>姓名为 {{lastName | uppercase}} </p>
+
+        </div>
+    </xmp>
+    <p>lowercase 过滤器将字符串格式化为小写...</p>
+</div>
+<div class="i-content">
+    <h3>currency 过滤器</h3>
+    <p>currency 过滤器将数字格式化为货币格式：</p>
+    <xmp class="html">
+        <div ng-app="myApp" ng-controller="costCtrl">
+
+            <input type="number" ng-model="quantity">
+            <input type="number" ng-model="price">
+
+            <p>总价 = {{ (quantity * price) | currency }}</p>
+
+        </div>
+    </xmp>
+</div>
+<div class="i-content">
+    <h3>向指令添加过滤器</h3>
+    <p>过滤器可以通过一个管道字符（|）和一个过滤器添加到指令中。</p>
+    <b><b>orderBy </b>过滤器根据表达式排列数组：</b>
+    <xmp class="html">
+        <div ng-app="myApp" ng-controller="namesCtrl">
+
+            <ul>
+                <li ng-repeat="x in names | orderBy:'country'">
+                    {{ x.name + ', ' + x.country }}
+                </li>
+            </ul>
+
+        </div>
+    </xmp>
+</div>
+<div class="i-content">
+    <h3>过滤输入</h3>
+    <p>输入过滤器可以通过一个管道字符（|）和一个过滤器添加到指令中，该过滤器后跟一个冒号和一个模型名称。</p>
+    <p>filter 过滤器从数组中选择一个子集：</p>
+    <xmp class="html">
+        <div ng-app="myApp" ng-controller="namesCtrl">
+
+            <p><input type="text" ng-model="test"></p>
+
+            <ul>
+                <li ng-repeat="x in names | filter:test | orderBy:'country'">
+                    {{ (x.name | uppercase) + ', ' + x.country }}
+                </li>
+            </ul>
+
+        </div>
+    </xmp>
+</div>
