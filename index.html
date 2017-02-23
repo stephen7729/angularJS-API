@@ -22,41 +22,17 @@
     </nav>
     <div class="container">
         <div class="left-menu">
-            <ul class="menu">
-                <li class="active"><a href="">AngularJS简介</a></li>
-                <li><a href="">AngularJS表达式</a></li>
-                <li><a href="">模型 视图 控制器 (MVC)</a></li>
-                <li>
-                    <a href="">AngularJS指令</a>
+            <ul class="menu" ng-controller="menuCtrl">
+                <li ng-repeat="x in items" ng-class="{true : 'active',false : ''}[$index == 0]">
+                    <a href="#/{{x.tag}}" ng-click="tagTo('{{x.tag}}',$event)">{{x.name}}</a>
                     <ul class="second-menu">
-                        <li><a href="">AngularJS模型</a></li>
-                        <li><a href="">AngularJS $scope（作用域）</a></li>
-                        <li><a href="">AngularJS 控制器</a></li>
-                        <li><a href="">AngularJS 过滤器</a></li>
-                        <li><a href="">AngularJS service</a></li>
-                        <li><a href="">AngularJS http</a></li>
-                        <li><a href="">AngularJS select</a></li>
-                        <li><a href="">AngularJS 表格</a></li>
-                        <li><a href="">AngularJS HTML DOM</a></li>
-                        <li><a href="">AngularJS 事件</a></li>
+                        <li ng-repeat="n in x.secondUl"><a href="#/{{n.tag}}" ng-click="tagTo('{{n.tag}}',$event)">{{n.name}}</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="">AngularJS 表单</a>
-                    <ul class="second-menu">
-                        <li><a href="">AngularJS 输入验证</a></li>
-                    </ul>
-                </li>
-                <li><a href="">AngularJS 包含</a></li>
-                <li><a href="">AngularJS 动画</a></li>
-                <li><a href="">AngularJS 模块</a></li>
-                <li><a href="">AngularJS 依赖注入</a></li>
-                <li><a href="">AngularJS 路由</a></li>
-                <li><a href="">AngularJS 应用</a></li>
             </ul>
         </div>
         <div class="content" ng-controller="getContent">
-            <div ng-include="'templete/htmlDOM.html'"></div>
+            <div ng-include="'templete/{{tagHtml}}'"></div>
         </div>
     </div>
     <div class="footer">
@@ -69,6 +45,26 @@
         var app = angular.module("app",[]);
         app.controller("getContent",function($scope){
 
+        });
+        app.controller("menuCtrl",function($scope,$element,$http){
+            $scope.tagHtml = "instruction.html";
+            $http.get("json/leftMenu.json").then(function(result){
+                $scope.items = result.data.menus;
+            });
+            $scope.tagTo = function (tag,$event) {
+                var tag = tag;
+                $element.find("li").removeClass("active");
+                $($event.target).parent();
+                $scope.tagHtml = tag;
+
+            }
+            /*$element.find("li").each(function(){
+                $(this).off("click").on("click",function(){
+                    $element.find("li").removeClass("active");
+                    $(this).addClass("active");
+                    console.log($(this))
+                })
+            });*/
         });
     </script>
 </body>

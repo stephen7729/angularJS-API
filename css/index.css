@@ -82,12 +82,18 @@ xmp.html::after {
     padding: 5px 20px;
     text-align: left;
 }
+.menu > li.active > a {
+    color: #ff3c54;
+}
 .second-menu {
     list-style: none;
     padding-left: 10px;
 }
 .second-menu > li{
     padding: 5px;
+}
+.second-menu > li.active > a{
+    color: #ff3c54;
 }
 .i-title {
     border-bottom: 1px solid #dddddd;
