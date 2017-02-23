@@ -1,0 +1,87 @@
+<div class="i-title">
+    <h1>AngularJS 事件</h1>
+    <p>AngularJS 有自己的 HTML 事件指令。</p>
+</div>
+<div class="i-content" ng-app="exception">
+    <h3>ng-click 指令</h3>
+    <p>ng-click 指令定义了 AngularJS 点击事件。</p>
+    <xmp class="html">
+        <div ng-app="" ng-controller="myCtrl">
+
+            <button ng-click="count = count + 1">点我！</button>
+
+            <p>{{ count }}</p>
+
+        </div>
+    </xmp>
+</div>
+<div class="i-content">
+    <h3>隐藏 HTML 元素</h3>
+    <p><b>ng-hide</b> 指令用于设置应用部分是否可见。</p>
+    <p><b>ng-hide="true"</b> 设置 HTML 元素不可见。</p>
+    <p><b>ng-hide="false"</b> 设置 HTML 元素可见。</p>
+    <xmp class="html">
+        <div ng-app="myApp" ng-controller="personCtrl">
+
+            <button ng-click="toggle()">隐藏/显示</button>
+
+            <p ng-hide="myVar">
+                名: <input type="text" ng-model="firstName"><br>
+                姓名: <input type="text" ng-model="lastName"><br>
+                <br>
+                Full Name: {{firstName + " " + lastName}}
+            </p>
+
+        </div>
+
+        <script>
+            var app = angular.module('myApp', []);
+            app.controller('personCtrl', function($scope) {
+                $scope.firstName = "John",
+                    $scope.lastName = "Doe"
+                $scope.myVar = false;
+                $scope.toggle = function() {
+                    $scope.myVar = !$scope.myVar;
+                };
+            });
+        </script>
+    </xmp>
+    <p>应用解析:</p>
+    <p>第一部分 <b>personController</b>与控制器章节类似。</p>
+    <p>应用有一个默认属性: <b>$scope.myVar = false;</b></p>
+    <p><b>ng-hide</b> 指令设置 &lt;p&gt;元素及两个输入域是否可见， 根据 myVar 的值 (true 或 false) 来设置是否可见。</p>
+    <p><b>toggle()</b> 函数用于切换 myVar 变量的值（true 和 false）。</p>
+    <p><b>ng-hide="true"</b> 让元素 不可见。</p>
+</div>
+<div class="i-content">
+    <h3>显示 HTML 元素</h3>
+    <p>ng-show 指令可用于设置应用中的一部分是否可见 。</p>
+    <p>ng-show="false" 可以设置 HTML 元素 不可见。</p>
+    <p>ng-show="true" 可以以设置 HTML 元素可见。</p>
+    <xmp class="html">
+        <div ng-app="myApp" ng-controller="personCtrl">
+
+            <button ng-click="toggle()">隐藏/显示</button>
+
+            <p ng-show="myVar">
+                名: <input type="text" ng-model="firstName"><br>
+                姓: <input type="text" ng-model="lastName"><br>
+                <br>
+                姓名: {{firstName + " " + lastName}}
+            </p>
+
+        </div>
+
+        <script>
+            var app = angular.module('myApp', []);
+            app.controller('personCtrl', function($scope) {
+                $scope.firstName = "John",
+                    $scope.lastName = "Doe"
+                $scope.myVar = true;
+                $scope.toggle = function() {
+                    $scope.myVar = !$scope.myVar;
+                }
+            });
+        </script>
+    </xmp>
+</div>

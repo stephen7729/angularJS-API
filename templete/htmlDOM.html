@@ -1,0 +1,75 @@
+<div class="i-title">
+    <h1>AngularJS HTML DOM</h1>
+    <p>AngularJS 为 HTML DOM 元素的属性提供了绑定应用数据的指令。</p>
+</div>
+<div class="i-content" ng-app="exception">
+    <h3>ng-disabled 指令</h3>
+    <p><b>ng-disabled</b> 指令直接绑定应用程序数据到 HTML 的 disabled 属性。</p>
+    <xmp class="html">
+        <div ng-app="" ng-init="mySwitch=true">
+
+            <p>
+                <button ng-disabled="mySwitch">点我!</button>
+            </p>
+
+            <p>
+                <input type="checkbox" ng-model="mySwitch">按钮
+            </p>
+
+            <p>
+                {{ mySwitch }}
+            </p>
+
+        </div>
+    </xmp>
+    <p>实例讲解：</p>
+    <p><b>ng-disabled</b> 指令绑定应用程序数据 "mySwitch" 到 HTML 的 disabled 属性。</p>
+    <p><b>ng-model</b> 指令绑定 "mySwitch" 到 HTML input checkbox 元素的内容（value）。</p>
+    <p>如果 <b>mySwitch</b> 为<b>true</b>, 按钮将不可用: </p>
+    <xmp class="html">
+        <p>
+            <button disabled>点我！</button>
+        </p>
+    </xmp>
+    <p>如果 <b>mySwitch</b> 为<b>false</b>, 按钮则可用: </p>
+    <xmp class="html">
+        <p>
+            <button>点我!</button>
+        </p>
+    </xmp>
+</div>
+<div class="i-content">
+    <h3>ng-show 指令</h3>
+    <p>ng-show 指令隐藏或显示一个 HTML 元素。</p>
+    <xmp class="html">
+        <div ng-app="">
+
+            <p ng-show="true">我是可见的。</p>
+
+            <p ng-show="false">我是不可见的。</p>
+
+        </div>
+    </xmp>
+    <p>ng-show 指令根据 value 的值来显示（隐藏）HTML 元素。</p>
+    <p>你可以使用表达式来计算布尔值（ true 或 false）:</p>
+    <xmp class="html">
+        <div ng-app="" ng-init="hour=13">
+
+            <p ng-show="hour > 12">我是可见的。</p>
+
+        </div>
+    </xmp>
+</div>
+<div class="i-content">
+    <h3>ng-hide 指令</h3>
+    <p>ng-hide 指令用于隐藏或显示 HTML 元素。</p>
+    <xmp class="html">
+        <div ng-app="">
+
+            <p ng-hide="true">我是不可见的。</p>
+
+            <p ng-hide="false">我是可见的。</p>
+
+        </div>
+    </xmp>
+</div>

@@ -1,0 +1,138 @@
+<div class="i-title">
+    <h1>AngularJS 模块</h1>
+    <p>模块定义了一个应用程序。</p>
+    <p>模块是应用程序中不同部分的容器。</p>
+    <p>模块是应用控制器的容器。</p>
+    <p>控制器通常属于一个模块。</p>
+</div>
+<div class="i-content">
+    <h3>创建模块</h3>
+    <p>你可以通过 AngularJS 的 angular.module 函数来创建模块：</p>
+    <xmp class="html">
+        <div ng-app="myApp">...</div>
+
+        <script>
+
+            var app = angular.module("myApp", []);
+
+        </script>
+    </xmp>
+    <p>"myApp" 参数对应执行应用的 HTML 元素。</p>
+    <p>现在你可以在 AngularJS 应用中添加控制器，指令，过滤器等。</p>
+</div>
+<div class="i-content">
+    <h3>添加控制器</h3>
+    <p>你可以使用 ng-controller 指令来添加应用的控制器:</p>
+    <xmp class="html">
+        <div ng-app="myApp" ng-controller="myCtrl">
+            {{ firstName + " " + lastName }}
+        </div>
+
+        <script>
+
+            var app = angular.module("myApp", []);
+
+            app.controller("myCtrl", function($scope) {
+                $scope.firstName = "John";
+                $scope.lastName = "Doe";
+            });
+
+        </script>
+    </xmp>
+</div>
+<div class="i-content">
+    <h3>添加指令</h3>
+    <p>AngularJS 提供了很多内置的指令，你可以使用它们来为你的应用添加功能。</p>
+    <p>此外，你可以使用模块来为你应用添加自己的指令：</p>
+    <xmp class="html">
+        <div ng-app="myApp" runoob-directive></div>
+
+        <script>
+
+            var app = angular.module("myApp", []);
+
+            app.directive("runoobDirective", function() {
+                return {
+                    template : "我在指令构造器中创建!"
+                };
+            });
+        </script>
+    </xmp>
+</div>
+<div class="i-content">
+    <h3>模块和控制器包含在 JS 文件中</h3>
+    <p>通常 AngularJS 应用程序将模块和控制器包含在 JavaScript 文件中。</p>
+    <b>在以下实例中， "myApp.js" 包含了应用模块的定义程序， "myCtrl.js" 文件包含了控制器：</b>
+    <xmp class="html">
+        <!DOCTYPE html>
+        <html>
+        <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+        <body>
+
+        <div ng-app="myApp" ng-controller="myCtrl">
+            {{ firstName + " " + lastName }}
+        </div>
+
+        <script src="myApp.js"></script>
+        <script src="myCtrl.js"></script>
+
+        </body>
+        </html>
+    </xmp>
+    <xmp class="javascript">
+        //myApp.js
+        var app = angular.module("myApp", []);
+    </xmp>
+    <div class="alert alert-warning">
+        <i class="fa fa-lightbulb-o fa-2x"></i>Tip:
+        <p>在模块定义中 [] 参数用于定义模块的依赖关系。</p>
+        <p>中括号[]表示该模块没有依赖，如果有依赖的话会在中括号写上依赖的模块名字。</p>
+    </div>
+    <xmp class="javascript">
+        //myCtrl.js
+        app.controller("myCtrl", function($scope) {
+        $scope.firstName	= "John";
+        $scope.lastName= "Doe";
+        });
+    </xmp>
+</div>
+<div class="i-content">
+    <h3>函数会影响到全局命名空间</h3>
+    <p>JavaScript 中应避免使用全局函数。因为他们很容易被其他脚本文件覆盖。</p>
+    <p>AngularJS 模块让所有函数的作用域在该模块下，避免了该问题。</p>
+</div>
+<div class="i-content">
+    <h3>什么时候载入库?</h3>
+    <div class="alert alert-warning">
+        <i class="fa fa-lightbulb-o fa-2x"></i>Tip:
+        <p>在我们的实例中，所有 AngularJS 库都在 HTML 文档的头部载入。</p>
+    </div>
+    <p>对于 HTML 应用程序，通常建议把所有的脚本都放置在 &lt;body&lt; 元素的最底部。</p>
+    <p>这会提高网页加载速度，因为 HTML 加载不受制于脚本加载。</p>
+    <p>在我们的多个 AngularJS 实例中，您将看到 AngularJS 库是在文档的 &lt;head&lt;区域被加载。</p>
+    <p>在我们的实例中，AngularJS 在 &lt;head&lt; 元素中被加载，因为对 angular.module 的调用只能在库加载完成后才能进行。</p>
+    <p>另一个解决方案是在 &lt;body&lt; 元素中加载 AngularJS 库，但是必须放置在您的 AngularJS 脚本前面：</p>
+    <xmp class="html">
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+        </head>
+        <body>
+
+        <div ng-app="myApp" ng-controller="myCtrl">
+            {{ firstName + " " + lastName }}
+        </div>
+        <script>
+            var app = angular.module("myApp", []);
+            app.controller("myCtrl", function($scope) {
+                $scope.firstName = "John";
+                $scope.lastName = "Doe";
+            });
+        </script>
+
+        </body>
+        </html>
+    </xmp>
+</div>

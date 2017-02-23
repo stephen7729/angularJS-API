@@ -1,0 +1,30 @@
+<div class="i-title">
+    <h1>AngularJS 包含</h1>
+    <p>在 AngularJS 中，你可以在 HTML 中包含 HTML 文件。</p>
+</div>
+<div class="i-content" ng-app="exception">
+    <h3>在 HTML 中包含 HTML 文件</h3>
+    <p>在 HTML 中，目前还不支持包含 HTML 文件的功能。</p>
+</div>
+<div class="i-content">
+    <h3>客户端包含</h3>
+    <p>通过 JavaScript 有很多种方式可以在 HTML 中包含 HTML 文件。</p>
+    <p>通常我们使用 http 请求 (AJAX) 从服务端获取数据，返回的数据我们可以通过 使用 innerHTML 写入到 HTML 元素中。</p>
+</div>
+<div class="i-content">
+    <h3>AngularJS 包含</h3>
+    <p>使用 AngularJS, 你可以使用 ng-include 指令来包含 HTML 内容:</p>
+    <p>通常我们使用 http 请求 (AJAX) 从服务端获取数据，返回的数据我们可以通过 使用 innerHTML 写入到 HTML 元素中。</p>
+    <xmp class="html">
+        <body ng-app="">
+
+        <div ng-include="'text.htm'"></div>
+
+        </body>
+    </xmp>
+    <xmp class="html">
+        <!-- include  text.htm 内容-->
+        <h1>hello</h1>
+        <p>这是一个被包含的 HTML 页面，使用 ng-include 指令来实现！</p>
+    </xmp>
+</div>
