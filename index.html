@@ -20,19 +20,19 @@
 
         </div><!-- /.container-fluid -->
     </nav>
-    <div class="container">
+    <div class="container" ng-controller="menuCtrl">
         <div class="left-menu">
-            <ul class="menu" ng-controller="menuCtrl">
+            <ul class="menu">
                 <li ng-repeat="x in items" ng-class="{true : 'active',false : ''}[$index == 0]">
-                    <a href="#/{{x.tag}}" ng-click="tagTo('{{x.tag}}',$event)">{{x.name}}</a>
+                    <a href="#/templete/{{x.tag}}" ng-click="tagTo($event)">{{x.name}}</a>
                     <ul class="second-menu">
-                        <li ng-repeat="n in x.secondUl"><a href="#/{{n.tag}}" ng-click="tagTo('{{n.tag}}',$event)">{{n.name}}</a></li>
+                        <li ng-repeat="n in x.secondUl"><a href="#/templete/{{n.tag}}" ng-click="tagTo($event)">{{n.name}}</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
-        <div class="content" ng-controller="getContent">
-            <div ng-include="'templete/{{tagHtml}}'"></div>
+        <div class="content">
+            <div ng-include="'templete/intrduce.html'"></div>
         </div>
     </div>
     <div class="footer">
@@ -40,31 +40,46 @@
     </div>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.js"></script>
-    <script src="js/angualr/angular.min.js"></script>
+    <script src="js/angualr/angular.js"></script>
     <script>
         var app = angular.module("app",[]);
-        app.controller("getContent",function($scope){
-
-        });
-        app.controller("menuCtrl",function($scope,$element,$http){
-            $scope.tagHtml = "instruction.html";
+        app.controller("menuCtrl",function($scope,$element,$http,$routerHref,$location){
             $http.get("json/leftMenu.json").then(function(result){
                 $scope.items = result.data.menus;
             });
-            $scope.tagTo = function (tag,$event) {
-                var tag = tag;
+            $scope.tagTo = function ($event) {
+                var $tag = $($event.target),
+                    href = $event.target.href;
                 $element.find("li").removeClass("active");
-                $($event.target).parent();
-                $scope.tagHtml = tag;
+                $tag.parent().addClass("active");
+                //获取路径
+                var path =  $routerHref.distribution(href).hash.substring(1);
+                $http.get(path).then(function(result){
+                    $element.find(".content").html("").html(result.data)
+                });
 
             }
-            /*$element.find("li").each(function(){
-                $(this).off("click").on("click",function(){
-                    $element.find("li").removeClass("active");
-                    $(this).addClass("active");
-                    console.log($(this))
-                })
-            });*/
+        });
+        app.service("$routerHref",function(){
+            this.distribution = function(path){
+                var pathArry = path.split("/");
+                var pathMoudel = toObject(pathArry);
+               return pathMoudel;
+            }
+            var toObject = function(arry){
+                var obj = {};
+                var str =  "";
+                for (var i = 0; i < arry.length; i++){
+                    if(i>4){
+                        str += "/" + arry[i];
+                    }
+                }
+                obj.request = arry[0];
+                obj.localhost = arry[2];
+                obj.projectName = arry [3];
+                obj.hash = str;
+                return obj;
+            }
         });
     </script>
 </body>

@@ -1,11 +1,11 @@
 .text-cherry {
     color: #ff3c54;
 }
+a:focus {
+    outline: none;
+}
 p {
     font-size: 16px;
-    line-height: 175%;
-    word-spacing:8px;
-    letter-spacing: 1px;
 }
 h1 {
     border-left: 4px solid #ff3c54;
