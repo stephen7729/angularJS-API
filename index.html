@@ -43,7 +43,7 @@
     <script src="js/angualr/angular.js"></script>
     <script>
         var app = angular.module("app",[]);
-        app.controller("menuCtrl",function($scope,$element,$http,$routerHref,$location){
+        app.controller("menuCtrl",function($scope,$element,$http,$routerHref){
             $http.get("json/leftMenu.json").then(function(result){
                 $scope.items = result.data.menus;
             });
@@ -52,6 +52,7 @@
                     href = $event.target.href;
                 $element.find("li").removeClass("active");
                 $tag.parent().addClass("active");
+                $("html,body").animate({scrollTop:0}, 600);
                 //获取路径
                 var path =  $routerHref.distribution(href).hash.substring(1);
                 $http.get(path).then(function(result){

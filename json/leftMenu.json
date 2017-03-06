@@ -86,6 +86,11 @@
         "name" : "AngularJS 依赖注入",
         "tag" : "dependencyInjection.html",
         "secondUl" : []
+      },
+      {
+        "name" : "AngularJS开发人员最常犯的10个错误",
+        "tag" : "10_mistakes.html",
+        "secondUl" : []
       }
 
   ]
